@@ -1457,7 +1457,7 @@ SMF2</text>
       </cpnbinder>
     </binders>
     <monitorblock name="Monitors"/>
-    <IndexNode expanded="true">
+    <IndexNode expanded="false">
       <IndexNode expanded="false"/>
       <IndexNode expanded="false"/>
       <IndexNode expanded="false">
