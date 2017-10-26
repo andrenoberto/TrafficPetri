@@ -13,4 +13,6 @@ To simulate, simply run the .cpn file and start the simulation.
 
 There's also an in progress Java project that will make a communication with CPN Tools' server and will be able to show the simulation within a better GUI.
 
+You can find the source code inside JavaPetri folder.
+
 [cpnwebsite]: http://cpntools.org
