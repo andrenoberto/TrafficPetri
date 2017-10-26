@@ -32,7 +32,9 @@
         </color>
         <color id="ID3">
           <id>INT</id>
+          <timed/>
           <int/>
+          <layout>colset INT = int timed;</layout>
         </color>
         <color id="ID1412312409">
           <id>INTINF</id>
@@ -717,7 +719,7 @@ SMF2</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1412323794"/>
         <annot id="ID1412332535">
-          <posattr x="-314.000000"
+          <posattr x="-299.500000"
                    y="250.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -728,7 +730,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+2</text>
         </annot>
       </arc>
       <arc id="ID1412331911"
@@ -781,7 +783,7 @@ SMF2</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1412324119"/>
         <annot id="ID1412332537">
-          <posattr x="304.000000"
+          <posattr x="318.500000"
                    y="21.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -792,7 +794,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+5</text>
         </annot>
       </arc>
       <arc id="ID1412331960"
@@ -813,7 +815,7 @@ SMF2</text>
         <transend idref="ID1412324273"/>
         <placeend idref="ID1412324048"/>
         <annot id="ID1412332538">
-          <posattr x="300.000000"
+          <posattr x="314.500000"
                    y="91.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -824,7 +826,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+5</text>
         </annot>
       </arc>
       <arc id="ID1412332121"
@@ -877,7 +879,7 @@ SMF2</text>
         <transend idref="ID1412324356"/>
         <placeend idref="ID1412323853"/>
         <annot id="ID1412332540">
-          <posattr x="-326.000000"
+          <posattr x="-311.500000"
                    y="6.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -888,7 +890,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+5</text>
         </annot>
       </arc>
       <arc id="ID1412332214"
@@ -941,7 +943,7 @@ SMF2</text>
         <transend idref="ID1412324442"/>
         <placeend idref="ID1412323915"/>
         <annot id="ID1412332542">
-          <posattr x="-337.000000"
+          <posattr x="-351.500000"
                    y="-188.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -952,7 +954,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+5</text>
         </annot>
       </arc>
       <arc id="ID1412332371"
@@ -1005,7 +1007,7 @@ SMF2</text>
         <transend idref="ID1412324442"/>
         <placeend idref="ID1412323980"/>
         <annot id="ID1412332544">
-          <posattr x="302.000000"
+          <posattr x="316.500000"
                    y="17.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -1016,7 +1018,7 @@ SMF2</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`1</text>
+                version="4.0.1">1`1@+2</text>
         </annot>
       </arc>
       <arc id="ID1412332492"
@@ -1213,12 +1215,7 @@ SMF2</text>
           <text>&lt;same as model&gt;</text>
         </value>
       </option>
-      <option name="extensions.10006.enable">
-        <value>
-          <boolean>true</boolean>
-        </value>
-      </option>
-      <option name="extensions.10003.enable">
+      <option name="extensions.10002.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -1228,12 +1225,17 @@ SMF2</text>
           <boolean>true</boolean>
         </value>
       </option>
-      <option name="extensions.10002.enable">
+      <option name="extensions.10006.enable">
         <value>
           <boolean>true</boolean>
         </value>
       </option>
       <option name="extensions.10001.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10003.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -1436,14 +1438,14 @@ SMF2</text>
     </options>
     <binders>
       <cpnbinder id="ID2222"
-                 x="158"
-                 y="132"
-                 width="1368"
-                 height="637">
+                 x="173"
+                 y="83"
+                 width="1467"
+                 height="680">
         <sheets>
           <cpnsheet id="ID2215"
-                    panx="7.000000"
-                    pany="11.000000"
+                    panx="10.000000"
+                    pany="15.000000"
                     zoom="1.000000"
                     instance="ID2149">
             <zorder>
@@ -1457,7 +1459,7 @@ SMF2</text>
       </cpnbinder>
     </binders>
     <monitorblock name="Monitors"/>
-    <IndexNode expanded="false">
+    <IndexNode expanded="true">
       <IndexNode expanded="false"/>
       <IndexNode expanded="false"/>
       <IndexNode expanded="false">
@@ -1522,8 +1524,10 @@ SMF2</text>
           <IndexNode expanded="false"/>
         </IndexNode>
       </IndexNode>
-      <IndexNode expanded="false"/>
       <IndexNode expanded="false">
+        <IndexNode expanded="false"/>
+      </IndexNode>
+      <IndexNode expanded="true">
         <IndexNode expanded="false">
           <IndexNode expanded="true"/>
           <IndexNode expanded="true"/>
@@ -1532,7 +1536,7 @@ SMF2</text>
         <IndexNode expanded="true">
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
-          <IndexNode expanded="false"/>
+          <IndexNode expanded="true"/>
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
