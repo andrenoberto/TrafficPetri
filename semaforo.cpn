@@ -1438,14 +1438,14 @@ SMF2</text>
     </options>
     <binders>
       <cpnbinder id="ID2222"
-                 x="173"
-                 y="83"
-                 width="1467"
-                 height="680">
+                 x="92"
+                 y="42"
+                 width="1433"
+                 height="684">
         <sheets>
           <cpnsheet id="ID2215"
-                    panx="10.000000"
-                    pany="15.000000"
+                    panx="18.000000"
+                    pany="21.000000"
                     zoom="1.000000"
                     instance="ID2149">
             <zorder>

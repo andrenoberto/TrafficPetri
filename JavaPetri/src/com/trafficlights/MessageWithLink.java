@@ -1,30 +1,23 @@
 package com.trafficlights;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 
-public class MessageWithLink extends JEditorPane {
+class MessageWithLink extends JEditorPane {
 
-    public MessageWithLink(String htmlBody) {
+    MessageWithLink(String htmlBody) {
         super("text/html", "<html><body style=\"" + getStyle() + "\">" + htmlBody + "</body></html>");
-        addHyperlinkListener(new HyperlinkListener() {
-            @Override
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
-                    // Process the click event on the link (for example with java.awt.Desktop.getDesktop().browse())
-                    URI uri = URI.create(String.valueOf(e.getURL()));
-                    try {
-                        java.awt.Desktop.getDesktop().browse(uri);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+        addHyperlinkListener(e -> {
+            if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
+                // Process the click event on the link (for example with java.awt.Desktop.getDesktop().browse())
+                URI uri = URI.create(String.valueOf(e.getURL()));
+                try {
+                    Desktop.getDesktop().browse(uri);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
             }
         });
@@ -32,7 +25,7 @@ public class MessageWithLink extends JEditorPane {
         setBorder(null);
     }
 
-    static StringBuffer getStyle() {
+    private static StringBuffer getStyle() {
         // for copying style
         JLabel label = new JLabel();
         Font font = label.getFont();
