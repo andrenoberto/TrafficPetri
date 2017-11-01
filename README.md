@@ -5,7 +5,7 @@ A Petri Net made using CPN Tools that simulates the communication between two tr
 
 It uses CPN Tools to simulate our colored petri net.
 
-You can CPN Tools on it's [website][cpnwebsite].
+You can download CPN Tools on it's [website][cpnwebsite].
 
 To simulate, simply run the .cpn file and start the simulation.
 
