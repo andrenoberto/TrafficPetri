@@ -1,0 +1,67 @@
+# Dump files
+*.dump
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+/JavaPetri/.idea/**/workspace.xml
+/JavaPetri/.idea/**/tasks.xml
+/JavaPetri/.idea/dictionaries
+
+# Sensitive or high-churn files:
+/JavaPetri//JavaPetri/.idea/**/dataSources/
+/JavaPetri/.idea/**/dataSources.ids
+/JavaPetri/.idea/**/dataSources.xml
+/JavaPetri/.idea/**/dataSources.local.xml
+/JavaPetri/.idea/**/sqlDataSources.xml
+/JavaPetri/.idea/**/dynamic.xml
+/JavaPetri/.idea/**/uiDesigner.xml
+
+# Gradle:
+/JavaPetri/.idea/**/gradle.xml
+/JavaPetri/.idea/**/libraries
+
+# CMake
+/JavaPetri/cmake-build-debug/
+
+# Mongo Explorer plugin:
+/JavaPetri/.idea/**/mongoSettings.xml
+
+## File-based project format:
+/JavaPetri/*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/JavaPetri/out/
+
+# mpeltonen/sbt-idea plugin
+/JavaPetri/.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+/JavaPetri/.idea/replstate.xml
+
+# Ruby plugin and RubyMine
+/JavaPetri/.rakeTasks
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+/JavaPetri/com_crashlytics_export_strings.xml
+/JavaPetri/crashlytics.properties
+/JavaPetri/crashlytics-build.properties
+/JavaPetri/fabric.properties
+
+### Intellij Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# /JavaPetri/.idea/misc.xml
+# *.ipr
+
+# Sonarlint plugin
+/JavaPetri/.idea/sonarlint
