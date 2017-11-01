@@ -1,6 +1,7 @@
 package com.connection;
 
 import com.cpn.CPNTools;
+import com.messagehelper.Encode;
 
 import java.io.IOException;
 
@@ -51,5 +52,21 @@ public class Server {
             System.err.println("Connection could not be established!");
             return false;
         }
+    }
+
+    /**
+     * Send the message that corresponds to the activated key
+     * @param key String that holds panel's name and key's name
+     */
+    public void send(String key) {
+        System.out.println("Sending message..");
+        try {
+
+            this.cpnTools.send(Encode.encodeString(key));
+            System.out.println("Message sent: " + key);
+        } catch (IOException e) {
+            System.out.println("Connection interrupted...");
+        }
+
     }
 }
