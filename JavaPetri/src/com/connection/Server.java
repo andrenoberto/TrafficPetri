@@ -84,4 +84,15 @@ public class Server {
         System.out.println("Receiving process has been finished");
         return this.fromCPN;
     }
+
+    public String receiveField() {
+        try {
+            this.fromCPN = Decode.decodeString(this.cpnField.receive());
+            System.out.println("Message received from field: " + this.fromCPN);
+        } catch (IOException e) {
+            System.out.println("Connection interrupted");
+        }
+        System.out.println("Receiving process has been received");
+        return this.fromCPN;
+    }
 }
