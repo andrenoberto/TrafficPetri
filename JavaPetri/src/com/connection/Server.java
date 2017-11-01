@@ -53,9 +53,9 @@ public class Server {
             return false;
         }
     }
-
     /**
      * Send the message that corresponds to the activated key
+     *
      * @param key String that holds panel's name and key's name
      */
     public void send(String key) {
@@ -67,6 +67,5 @@ public class Server {
         } catch (IOException e) {
             System.out.println("Connection interrupted...");
         }
-
     }
 }

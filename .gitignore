@@ -6,6 +6,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
+/JavaPetri/.idea/*
 /JavaPetri/.idea/**/workspace.xml
 /JavaPetri/.idea/**/tasks.xml
 /JavaPetri/.idea/dictionaries
