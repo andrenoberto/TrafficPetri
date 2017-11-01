@@ -1,6 +1,7 @@
 package com.connection;
 
 import com.cpn.CPNTools;
+import com.messagehelper.Decode;
 import com.messagehelper.Encode;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.IOException;
 public class Server {
     public CPNTools cpnTools;
     public CPNTools cpnField;
+    private String fromCPN;
     private String hostName;
     private int inputPort;
     private int outputPort;
@@ -46,7 +48,7 @@ public class Server {
         try {
             System.out.println("Server running at " + this.outputPort);
             this.cpnField.accept(this.outputPort);
-            System.out.println("Conexao Aberta com sucesso - Server");
+            System.out.println("Server connection successfully established!");
             return true;
         } catch (IOException e) {
             System.err.println("Connection could not be established!");
@@ -59,13 +61,27 @@ public class Server {
      * @param key String that holds panel's name and key's name
      */
     public void send(String key) {
-        System.out.println("Sending message..");
+        System.out.println("Sending message...");
         try {
-
             this.cpnTools.send(Encode.encodeString(key));
             System.out.println("Message sent: " + key);
         } catch (IOException e) {
-            System.out.println("Connection interrupted...");
+            System.out.println("Connection interrupted");
         }
+    }
+
+    /**
+     * Receives the message and converts into a string
+     * @return a string with the received message
+     */
+    public String receive() {
+        try {
+            this.fromCPN = Decode.decodeString(cpnTools.receive());
+            System.out.println("Message received: " + this.fromCPN);
+        } catch (IOException e) {
+            System.out.println("Connection interrupted");
+        }
+        System.out.println("Receiving process has been finished");
+        return this.fromCPN;
     }
 }
