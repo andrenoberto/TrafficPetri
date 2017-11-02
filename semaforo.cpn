@@ -755,7 +755,7 @@ SMF2</text>
                 version="4.0.1"/>
         </time>
         <code id="ID1412324445">
-          <posattr x="175.000000"
+          <posattr x="170.000000"
                    y="-240.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -769,7 +769,7 @@ SMF2</text>
                 version="4.0.1">input (sem1);
 output ();
 action
-(send(&quot;Con1&quot;, sem1, stringEncode))</text>
+send(&quot;Con1&quot;, sem1, stringEncode)</text>
         </code>
         <priority id="ID1412324447">
           <posattr x="-127.000000"
@@ -795,7 +795,7 @@ action
                   filled="false"/>
         <lineattr colour="Black"
                   thick="1"
-                  type="Solid"/>
+                  type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
         <text>Conectar</text>
@@ -872,7 +872,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                   filled="false"/>
         <lineattr colour="Black"
                   thick="1"
-                  type="Solid"/>
+                  type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
         <text>Receive Status</text>
@@ -1306,7 +1306,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                    currentcyckle="2"/>
         <transend idref="ID1413481574"/>
         <placeend idref="ID1413481464"/>
-        <annot id="ID1413482525">
+        <annot id="ID1413490881">
           <posattr x="-119.000000"
                    y="336.000000"/>
           <fillattr colour="White"
@@ -1952,9 +1952,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <IndexNode expanded="false"/>
         </IndexNode>
       </IndexNode>
-      <IndexNode expanded="false">
-        <IndexNode expanded="false"/>
-      </IndexNode>
+      <IndexNode expanded="false"/>
       <IndexNode expanded="true">
         <IndexNode expanded="false">
           <IndexNode expanded="true"/>
