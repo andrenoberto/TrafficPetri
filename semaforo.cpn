@@ -694,7 +694,7 @@
         </initmark>
       </place>
       <place id="ID1413495046">
-        <posattr x="-252.000000"
+        <posattr x="-294.000000"
                  y="168.000000"/>
         <fillattr colour="White"
                   pattern=""
@@ -717,7 +717,7 @@
                 anchor.vertical="0"/>
         </marking>
         <type id="ID1413495047">
-          <posattr x="-192.000000"
+          <posattr x="-234.000000"
                    y="144.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -731,7 +731,7 @@
                 version="4.0.1">STRING</text>
         </type>
         <initmark id="ID1413495048">
-          <posattr x="-183.000000"
+          <posattr x="-225.000000"
                    y="191.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -1363,7 +1363,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                   filled="false"/>
         <lineattr colour="Black"
                   thick="1"
-                  type="Solid"/>
+                  type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
         <text>Get Status</text>
@@ -1430,14 +1430,14 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
       </trans>
       <trans id="ID1413494746"
              explicit="false">
-        <posattr x="-441.000000"
-                 y="168.000000"/>
+        <posattr x="-462.000000"
+                 y="210.000000"/>
         <fillattr colour="White"
                   pattern=""
                   filled="false"/>
         <lineattr colour="Black"
                   thick="1"
-                  type="Solid"/>
+                  type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
         <text>Get Status</text>
@@ -1446,8 +1446,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <binding x="7.200000"
                  y="-3.000000"/>
         <cond id="ID1413494747">
-          <posattr x="-490.000000"
-                   y="199.000000"/>
+          <posattr x="-511.000000"
+                   y="241.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1460,8 +1460,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                 version="4.0.1"/>
         </cond>
         <time id="ID1413494748">
-          <posattr x="-386.500000"
-                   y="199.000000"/>
+          <posattr x="-407.500000"
+                   y="241.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1474,8 +1474,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                 version="4.0.1"/>
         </time>
         <code id="ID1413494749">
-          <posattr x="-366.500000"
-                   y="116.000000"/>
+          <posattr x="-387.500000"
+                   y="158.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1488,8 +1488,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                 version="4.0.1"/>
         </code>
         <priority id="ID1413494751">
-          <posattr x="-519.000000"
-                   y="137.000000"/>
+          <posattr x="-540.000000"
+                   y="179.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1511,7 +1511,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                   filled="false"/>
         <lineattr colour="Black"
                   thick="1"
-                  type="Solid"/>
+                  type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
         <text>Get Status</text>
@@ -1785,7 +1785,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                    currentcyckle="2"/>
         <transend idref="ID1413481574"/>
         <placeend idref="ID1413481464"/>
-        <annot id="ID1413493069">
+        <annot id="ID1413499366">
           <posattr x="-119.000000"
                    y="336.000000"/>
           <fillattr colour="White"
@@ -1882,7 +1882,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1413487922"/>
         <placeend idref="ID1412323794"/>
         <annot id="ID1413488835">
-          <posattr x="-529.000000"
+          <posattr x="-514.500000"
                    y="162.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -1893,7 +1893,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <textattr colour="Black"
                     bold="false"/>
           <text tool="CPN Tools"
-                version="4.0.1">1`&quot;1&quot;</text>
+                version="4.0.1">1`&quot;1&quot;@+2</text>
         </annot>
       </arc>
       <arc id="ID1413490535"
@@ -2266,8 +2266,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1413494746"/>
         <placeend idref="ID1412323853"/>
         <annot id="ID1413495692">
-          <posattr x="-546.000000"
-                   y="111.000000"/>
+          <posattr x="-558.000000"
+                   y="132.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -2298,7 +2298,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1413495046"/>
         <annot id="ID1413495811">
-          <posattr x="-144.000000"
+          <posattr x="-164.000000"
                    y="213.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -2330,8 +2330,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1413494746"/>
         <placeend idref="ID1413495046"/>
         <annot id="ID1413495933">
-          <posattr x="-362.000000"
-                   y="179.000000"/>
+          <posattr x="-384.500000"
+                   y="209.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -2831,8 +2831,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                  height="684">
         <sheets>
           <cpnsheet id="ID2215"
-                    panx="-23.000000"
-                    pany="24.000000"
+                    panx="-22.000000"
+                    pany="22.000000"
                     zoom="1.000000"
                     instance="ID2149">
             <zorder>
@@ -2911,9 +2911,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <IndexNode expanded="false"/>
         </IndexNode>
       </IndexNode>
-      <IndexNode expanded="false">
-        <IndexNode expanded="false"/>
-      </IndexNode>
+      <IndexNode expanded="false"/>
       <IndexNode expanded="true">
         <IndexNode expanded="false">
           <IndexNode expanded="true"/>
