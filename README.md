@@ -1,7 +1,7 @@
 # TrafficPetri
 A Petri Net made using CPN Tools that simulates the communication between two traffic lights.
 
-# CPN Tools
+## CPN Tools
 
 It uses CPN Tools to simulate our colored petri net.
 
@@ -9,10 +9,14 @@ You can download CPN Tools on it's [website][cpnwebsite].
 
 To simulate, simply run the .cpn file and start the simulation.
 
-# Java Project
+## Java Project
 
 There's also an in progress Java project that will make a communication with CPN Tools' server and will be able to show the simulation within a better GUI.
 
 You can find the source code inside JavaPetri folder.
+
+## Instructions
+
+I'll be adding details to compile and run ASAP.
 
 [cpnwebsite]: http://cpntools.org
