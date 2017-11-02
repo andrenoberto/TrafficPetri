@@ -25,4 +25,8 @@ Run `JavaPetri.jar`
 
 Open `trafficlights.cpn` & start the simulation.
 
+If everything is fine, the application will begin to sync it's traffic lights with the ones inside CPNTools.
+
+Now you should see the application and CPNTools interacting.
+
 [cpnwebsite]: http://cpntools.org
