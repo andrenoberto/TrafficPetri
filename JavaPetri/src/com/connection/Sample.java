@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.net.SocketException;
 
 public class Sample {
-    public CPNTools cpnTools = new CPNTools();
-    public boolean connectedToCPN = false;
-    public int port = 9000;
+    private CPNTools cpnTools = new CPNTools();
+    private boolean connectedToCPN = false;
 
-    public void init() throws Exception {
+    private void init() throws Exception {
         System.out.println("Waiting for a new connection...");
         try {
-            this.cpnTools.accept(this.port);
+            int port = 9000;
+            this.cpnTools.accept(port);
             this.connectedToCPN = true;
             System.out.println("Connection found...\nEstablishing communication...");
         } catch (IOException e) {
@@ -22,7 +22,7 @@ public class Sample {
         }
 
         while (this.connectedToCPN) {
-            String result = "";
+            String result;
             try {
                 result = Decode.decodeString(this.cpnTools.receive());
                 System.out.println("Message: " + result);
@@ -44,5 +44,3 @@ public class Sample {
         sample.init();
     }
 }
-
-
