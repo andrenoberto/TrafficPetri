@@ -1,10 +1,13 @@
 package com.trafficlights;
 
 import com.cpn.CPNTools;
+import com.messagehelper.Decode;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.SocketException;
 
 public class TrafficLights {
     private JButton helpButton;
@@ -71,9 +74,20 @@ public class TrafficLights {
         });
     }
 
+    public void setTrafficLightOne(String pathToIcon) {
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
+        trafficLightOne.setIcon(imageIcon);
+    }
+
+    public void setTrafficLightTwo(String pathToIcon) {
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
+        trafficLightTwo.setIcon(imageIcon);
+    }
+
     public static void main(String[] args) {
+        TrafficLights trafficLights = new TrafficLights();
         JFrame jFrame = new JFrame("Colored Petri Net - Traffic Lights");
-        jFrame.setContentPane(new TrafficLights().MainPanel);
+        jFrame.setContentPane(trafficLights.MainPanel);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
@@ -83,5 +97,53 @@ public class TrafficLights {
         CPNTools cpnTools = new CPNTools();
         boolean connectedToCPN = false;
         int port = 9000;
+
+        try {
+            cpnTools.accept(port);
+            connectedToCPN = true;
+            System.out.println("Connection found...\nCommunication established.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+        String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+        String result;
+        while (connectedToCPN) {
+            try {
+                result = Decode.decodeString(cpnTools.receive());
+                switch (result) {
+                    case "green1":
+                        pathToTrafficLightOneIcon = "images/greenIsOn.png";
+                        break;
+                    case "yellow1":
+                        pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                        break;
+                    case "red1":
+                        pathToTrafficLightOneIcon = "images/redIsOn.png";
+                        break;
+                    case "green2":
+                        pathToTrafficLightTwoIcon = "images/greenIsOn.png";
+                        break;
+                    case "yellow2":
+                        pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                        break;
+                    case "red2":
+                        pathToTrafficLightTwoIcon = "images/redIsOn.png";
+                        break;
+                }
+                trafficLights.setTrafficLightOne(pathToTrafficLightOneIcon);
+                trafficLights.setTrafficLightTwo(pathToTrafficLightTwoIcon);
+            } catch (SocketException e) {
+                try {
+                    cpnTools.disconnect();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                connectedToCPN = false;
+                System.out.println("Connection lost.");
+                e.printStackTrace();
+            }
+        }
     }
 }
