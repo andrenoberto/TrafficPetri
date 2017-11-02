@@ -6,9 +6,12 @@ import com.messagehelper.Decode;
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.SocketException;
+import java.net.URI;
+import java.security.Key;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
     private JPanel MainPanel;
@@ -29,17 +32,11 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenu help;
     private JMenuItem _fExit;
     private JMenuItem _hAbout;
+    private JMenuItem _hReportABug;
     private JMenuItem _hHelp;
 
     private TrafficLights(boolean ... addMouseListener) {
-        setTitle("Colored Petri Net - Traffic Lights");
-        /*helpButton.addActionListener(e -> {
-            String address = "https://github.com/andrenoberto/TrafficPetri";
-            String addressName = "TrafficPetri";
-            String hyperLink = "<a href=\"" + address + "\" target=\"_blank\">" + addressName + "</a>";
-            String htmlMessage = "<html>Check out project's github page " + hyperLink + " to get help.</html>";
-            JOptionPane.showMessageDialog(null, new MessageWithLink(htmlMessage));
-        });*/
+        setTitle("TrafficPetri: Colored Petri Net - Traffic Lights");
         /*
             Toolbar section
          */
@@ -68,10 +65,17 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
             Help
          */
         this._hAbout = new JMenuItem("About");
+        this._hAbout.setMnemonic(KeyEvent.VK_A);
         this._hAbout.addActionListener(this);
         this.help.add(this._hAbout);
 
+        this._hReportABug = new JMenuItem("Report A Bug");
+        this._hReportABug.setMnemonic(KeyEvent.VK_R);
+        this._hReportABug.addActionListener(this);
+        this.help.add(this._hReportABug);
+
         this._hHelp = new JMenuItem("Help");
+        this._hHelp.setMnemonic(KeyEvent.VK_F1);
         this._hHelp.addActionListener(this);
         this.help.add(this._hHelp);
 
@@ -234,9 +238,48 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         }
     }
 
+    private void aboutMessageDialog() {
+        String message = "TrafficPetri v1.0.0, built on October 02, 2017.";
+        JOptionPane.showMessageDialog(null, message, "About", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void helpMessageDialog() {
+        String address = "https://github.com/andrenoberto/TrafficPetri";
+        String addressName = "TrafficPetri";
+        String hyperLink = "<a href=\"" + address + "\" target=\"_blank\">" + addressName + "</a>";
+        String htmlMessage = "<html>Check out project's github page " + hyperLink + " to get help.</html>";
+        JOptionPane.showMessageDialog(null, new MessageWithLink(htmlMessage), "Help", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void openURI(String address) {
+        URI uri = URI.create(String.valueOf(address));
+        try {
+            Desktop.getDesktop().browse(uri);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        /*
+            File
+         */
+        if (e.getSource().equals(this._fExit)) {
+            System.exit(0);
+        }
+        /*
+            Help
+         */
+        if (e.getSource().equals(this._hAbout)) {
+            this.aboutMessageDialog();
+        }
+        if (e.getSource().equals(this._hReportABug)) {
+            this.openURI("https://github.com/andrenoberto/TrafficPetri/issues");
+        }
+        if (e.getSource().equals(this._hHelp)) {
+            this.helpMessageDialog();
+        }
     }
 
     @Override
@@ -246,8 +289,33 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyChar() == 'x') {
-            System.exit(0);
+        switch (e.getKeyChar()) {
+            case 'a':
+                if (this.help.isSelected()) {
+                    this.aboutMessageDialog();
+                }
+                break;
+            case KeyEvent.VK_F1:
+                if (this.help.isSelected()) {
+                    this.helpMessageDialog();
+                }
+                break;
+            case 'f':
+                this.file.doClick();
+                break;
+            case 'h':
+                this.help.doClick();
+                break;
+            case 'r':
+                if (this.help.isSelected()) {
+                    this.openURI("https://github.com/andrenoberto/TrafficPetri/issues");
+                }
+                break;
+            case 'x':
+                if (this.file.isSelected()) {
+                    System.exit(0);
+                }
+                break;
         }
     }
 
