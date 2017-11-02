@@ -18,12 +18,13 @@ public class TrafficLights {
     private JLabel statusMessageLabel;
     private JLabel statusLabel;
     private JToolBar statusBar;
+    private JComboBox comboBox1;
     private boolean tfOneRed = true;
     private boolean tfTwoRed = true;
     private boolean tfOneYellow = false;
     private boolean tfTwoYellow = false;
 
-    private TrafficLights() {
+    private TrafficLights(boolean ... addMouseListener) {
         helpButton.addActionListener(e -> {
             String address = "https://github.com/andrenoberto/TrafficPetri";
             String addressName = "TrafficPetri";
@@ -32,7 +33,19 @@ public class TrafficLights {
             JOptionPane.showMessageDialog(null, new MessageWithLink(htmlMessage));
         });
 
-        trafficLightOne.addMouseListener(new MouseAdapter() {
+        /*
+        Mouse listener section
+         */
+        boolean mouseListener;
+        if (addMouseListener.length > 0) {
+            mouseListener = addMouseListener[0];
+            if (!mouseListener) {
+                return;
+            }
+        } else {
+            return;
+        }
+        this.trafficLightOne.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String pathToIcon;
@@ -54,7 +67,7 @@ public class TrafficLights {
             }
         });
 
-        trafficLightTwo.addMouseListener(new MouseAdapter() {
+        this.trafficLightTwo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String pathToIcon;
@@ -94,7 +107,7 @@ public class TrafficLights {
         this.setTrafficLightTwo(pathToTrafficLightTwoIcon);
     }
 
-    public void setStatusMessageLabel(String statusMessageLabel) {
+    private void setStatusMessageLabel(String statusMessageLabel) {
         this.statusMessageLabel.setText(statusMessageLabel);
     }
 

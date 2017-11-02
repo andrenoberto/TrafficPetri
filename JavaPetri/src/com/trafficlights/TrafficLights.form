@@ -93,6 +93,12 @@
               <text value="waiting for a new connection..."/>
             </properties>
           </component>
+          <component id="3933b" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+            <constraints/>
+            <properties>
+              <opaque value="false"/>
+            </properties>
+          </component>
         </children>
       </toolbar>
     </children>
