@@ -18,7 +18,6 @@ public class TrafficLights {
     private JLabel statusMessageLabel;
     private JLabel statusLabel;
     private JToolBar statusBar;
-    private JComboBox comboBox1;
     private boolean tfOneRed = true;
     private boolean tfTwoRed = true;
     private boolean tfOneYellow = false;
