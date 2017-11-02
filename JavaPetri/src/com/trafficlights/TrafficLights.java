@@ -74,14 +74,21 @@ public class TrafficLights {
         });
     }
 
-    public void setTrafficLightOne(String pathToIcon) {
+    private void setTrafficLightOne(String pathToIcon) {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
         trafficLightOne.setIcon(imageIcon);
     }
 
-    public void setTrafficLightTwo(String pathToIcon) {
+    private void setTrafficLightTwo(String pathToIcon) {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
         trafficLightTwo.setIcon(imageIcon);
+    }
+
+    public void setTrafficLightsToDefault() {
+        String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+        String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+        this.setTrafficLightOne(pathToTrafficLightOneIcon);
+        this.setTrafficLightTwo(pathToTrafficLightTwoIcon);
     }
 
     public static void main(String[] args) {
@@ -91,12 +98,18 @@ public class TrafficLights {
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
+
         /*
         CPNTools communication stuff
          */
+
         CPNTools cpnTools = new CPNTools();
         boolean connectedToCPN = false;
         int port = 9000;
+
+        String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+        String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+        trafficLights.setTrafficLightsToDefault();
 
         try {
             cpnTools.accept(port);
@@ -106,12 +119,12 @@ public class TrafficLights {
             e.printStackTrace();
         }
 
-        String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-        String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
         String result;
         while (connectedToCPN) {
             try {
                 result = Decode.decodeString(cpnTools.receive());
+                System.out.printf("executing");
+                System.out.println(result);
                 switch (result) {
                     case "green1":
                         pathToTrafficLightOneIcon = "images/greenIsOn.png";
@@ -131,6 +144,10 @@ public class TrafficLights {
                     case "red2":
                         pathToTrafficLightTwoIcon = "images/redIsOn.png";
                         break;
+                    default:
+                        pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                        pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                        break;
                 }
                 trafficLights.setTrafficLightOne(pathToTrafficLightOneIcon);
                 trafficLights.setTrafficLightTwo(pathToTrafficLightTwoIcon);
@@ -142,7 +159,7 @@ public class TrafficLights {
                 }
                 connectedToCPN = false;
                 System.out.println("Connection lost.");
-                e.printStackTrace();
+                trafficLights.setTrafficLightsToDefault();
             }
         }
     }
