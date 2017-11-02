@@ -1,5 +1,7 @@
 package com.trafficlights;
 
+import com.cpn.CPNTools;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -75,5 +77,11 @@ public class TrafficLights {
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
+        /*
+        CPNTools communication stuff
+         */
+        CPNTools cpnTools = new CPNTools();
+        boolean connectedToCPN = false;
+        int port = 9000;
     }
 }
