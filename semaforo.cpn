@@ -1510,8 +1510,8 @@ action
       </trans>
       <trans id="ID1413494844"
              explicit="false">
-        <posattr x="389.000000"
-                 y="232.000000"/>
+        <posattr x="445.000000"
+                 y="252.000000"/>
         <fillattr colour="White"
                   pattern=""
                   filled="false"/>
@@ -1526,8 +1526,8 @@ action
         <binding x="7.200000"
                  y="-3.000000"/>
         <cond id="ID1413494845">
-          <posattr x="337.000000"
-                   y="263.000000"/>
+          <posattr x="393.000000"
+                   y="283.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1540,8 +1540,8 @@ action
                 version="4.0.1"/>
         </cond>
         <time id="ID1413494846">
-          <posattr x="446.500000"
-                   y="263.000000"/>
+          <posattr x="502.500000"
+                   y="283.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1554,8 +1554,8 @@ action
                 version="4.0.1"/>
         </time>
         <code id="ID1413494847">
-          <posattr x="466.500000"
-                   y="180.000000"/>
+          <posattr x="522.500000"
+                   y="200.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1568,8 +1568,8 @@ action
                 version="4.0.1"/>
         </code>
         <priority id="ID1413494849">
-          <posattr x="308.000000"
-                   y="201.000000"/>
+          <posattr x="364.000000"
+                   y="221.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1791,7 +1791,7 @@ action
                    currentcyckle="2"/>
         <transend idref="ID1413481574"/>
         <placeend idref="ID1413481464"/>
-        <annot id="ID1413499464">
+        <annot id="ID1413499562">
           <posattr x="-119.000000"
                    y="336.000000"/>
           <fillattr colour="White"
@@ -2368,8 +2368,8 @@ action
         <transend idref="ID1413494844"/>
         <placeend idref="ID1412323980"/>
         <annot id="ID1413498944">
-          <posattr x="497.000000"
-                   y="255.000000"/>
+          <posattr x="528.000000"
+                   y="263.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -2400,8 +2400,8 @@ action
         <transend idref="ID1413494844"/>
         <placeend idref="ID1413494945"/>
         <annot id="ID1413499129">
-          <posattr x="301.000000"
-                   y="243.000000"/>
+          <posattr x="327.500000"
+                   y="256.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -2608,7 +2608,7 @@ action
           <text>&lt;same as model&gt;</text>
         </value>
       </option>
-      <option name="extensions.10002.enable">
+      <option name="extensions.10003.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -2618,17 +2618,17 @@ action
           <boolean>true</boolean>
         </value>
       </option>
-      <option name="extensions.10006.enable">
-        <value>
-          <boolean>true</boolean>
-        </value>
-      </option>
       <option name="extensions.10001.enable">
         <value>
           <boolean>true</boolean>
         </value>
       </option>
-      <option name="extensions.10003.enable">
+      <option name="extensions.10002.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10006.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -2917,9 +2917,7 @@ action
           <IndexNode expanded="false"/>
         </IndexNode>
       </IndexNode>
-      <IndexNode expanded="false">
-        <IndexNode expanded="false"/>
-      </IndexNode>
+      <IndexNode expanded="false"/>
       <IndexNode expanded="true">
         <IndexNode expanded="false">
           <IndexNode expanded="true"/>
