@@ -123,8 +123,6 @@ public class TrafficLights {
         while (connectedToCPN) {
             try {
                 result = Decode.decodeString(cpnTools.receive());
-                System.out.printf("executing");
-                System.out.println(result);
                 switch (result) {
                     case "green1":
                         pathToTrafficLightOneIcon = "images/greenIsOn.png";
@@ -158,7 +156,7 @@ public class TrafficLights {
                     e1.printStackTrace();
                 }
                 connectedToCPN = false;
-                System.out.println("Connection lost.");
+                //System.out.println("Connection lost.");
                 trafficLights.setTrafficLightsToDefault();
             }
         }
