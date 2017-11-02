@@ -11,7 +11,6 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.URI;
-import java.security.Key;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
     private JPanel MainPanel;
@@ -32,11 +31,15 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenu help;
     private JMenuItem _fExit;
     private JMenuItem _hAbout;
+    private JMenuItem _hContribute;
     private JMenuItem _hReportABug;
     private JMenuItem _hHelp;
 
     private TrafficLights(boolean ... addMouseListener) {
         setTitle("TrafficPetri: Colored Petri Net - Traffic Lights");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Color bgColor = new Color(122, 178, 211);
+        setBackground(bgColor);
         /*
             Toolbar section
          */
@@ -68,6 +71,11 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         this._hAbout.setMnemonic(KeyEvent.VK_A);
         this._hAbout.addActionListener(this);
         this.help.add(this._hAbout);
+
+        this._hContribute = new JMenuItem("Contribute");
+        this._hContribute.setMnemonic(KeyEvent.VK_C);
+        this._hContribute.addActionListener(this);
+        this.help.add(this._hContribute);
 
         this._hReportABug = new JMenuItem("Report A Bug");
         this._hReportABug.setMnemonic(KeyEvent.VK_R);
@@ -161,7 +169,6 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     public static void main(String[] args) {
         TrafficLights trafficLights = new TrafficLights();
         trafficLights.setContentPane(trafficLights.MainPanel);
-        trafficLights.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         trafficLights.pack();
         trafficLights.setVisible(true);
         /*
@@ -274,6 +281,9 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         if (e.getSource().equals(this._hAbout)) {
             this.aboutMessageDialog();
         }
+        if (e.getSource().equals(this._hContribute)) {
+            this.openURI("https://github.com/andrenoberto/TrafficPetri/pulls");
+        }
         if (e.getSource().equals(this._hReportABug)) {
             this.openURI("https://github.com/andrenoberto/TrafficPetri/issues");
         }
@@ -293,6 +303,11 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
             case 'a':
                 if (this.help.isSelected()) {
                     this.aboutMessageDialog();
+                }
+                break;
+            case 'c':
+                if (this.help.isSelected()) {
+                    this.openURI("https://github.com/andrenoberto/TrafficPetri/pulls");
                 }
                 break;
             case KeyEvent.VK_F1:
