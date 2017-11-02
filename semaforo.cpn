@@ -57,6 +57,14 @@
           <string/>
           <layout>colset STRING = string timed;</layout>
         </color>
+        <var id="ID1413485055">
+          <type>
+            <id>STRING</id>
+          </type>
+          <id>sem1</id>
+          <id>sem2</id>
+          <layout>var sem1, sem2 : STRING;</layout>
+        </var>
       </block>
     </globbox>
     <page id="ID6">
@@ -1665,8 +1673,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
     </options>
     <binders>
       <cpnbinder id="ID2222"
-                 x="45"
-                 y="125"
+                 x="263"
+                 y="109"
                  width="1433"
                  height="684">
         <sheets>
@@ -1767,6 +1775,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
           <IndexNode expanded="false"/>
+          <IndexNode expanded="true"/>
           <IndexNode expanded="true"/>
         </IndexNode>
       </IndexNode>
