@@ -110,69 +110,76 @@ public class TrafficLights {
         CPNTools communication stuff
          */
 
-        CPNTools cpnTools = new CPNTools();
-        boolean connectedToCPN = false;
+        //CPNTools cpnTools = new CPNTools();
+        //boolean connectedToCPN = false;
         int port = 9000;
 
         String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
         String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
         trafficLights.setTrafficLightsToDefault();
 
-        try {
-            cpnTools.accept(port);
-            connectedToCPN = true;
-            trafficLights.setStatusMessageLabel("communication established.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         String result;
         int syncCounter = 0;
-        while (connectedToCPN) {
+        boolean connectedToCPN = false;
+        while (true) {
+            CPNTools cpnTools = new CPNTools();
             try {
-                result = Decode.decodeString(cpnTools.receive());
-                if (syncCounter < 3) {
-                    syncCounter++;
-                    trafficLights.setStatusMessageLabel("syncing traffic lights, please wait.");
-                } else {
-                    trafficLights.setStatusMessageLabel("receiving data.");
-                }
-                switch (result) {
-                    case "green1":
-                        pathToTrafficLightOneIcon = "images/greenIsOn.png";
-                        break;
-                    case "yellow1":
-                        pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-                        break;
-                    case "red1":
-                        pathToTrafficLightOneIcon = "images/redIsOn.png";
-                        break;
-                    case "green2":
-                        pathToTrafficLightTwoIcon = "images/greenIsOn.png";
-                        break;
-                    case "yellow2":
-                        pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
-                        break;
-                    case "red2":
-                        pathToTrafficLightTwoIcon = "images/redIsOn.png";
-                        break;
-                    default:
-                        pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-                        pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
-                        break;
-                }
-                trafficLights.setTrafficLightOne(pathToTrafficLightOneIcon);
-                trafficLights.setTrafficLightTwo(pathToTrafficLightTwoIcon);
-            } catch (SocketException e) {
+                cpnTools.accept(port);
+                connectedToCPN = true;
+                trafficLights.setStatusMessageLabel("connected to CPNTools.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            while (connectedToCPN) {
                 try {
-                    cpnTools.disconnect();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                    result = Decode.decodeString(cpnTools.receive());
+                    if (syncCounter < 3) {
+                        syncCounter++;
+                        trafficLights.setStatusMessageLabel("syncing traffic lights, please wait.");
+                    } else if (syncCounter == 3) {
+                        syncCounter++;
+                        trafficLights.setStatusMessageLabel("traffic lights synced.");
+                    } else {
+                        trafficLights.setStatusMessageLabel("receiving data.");
+                    }
+                    switch (result) {
+                        case "green1":
+                            pathToTrafficLightOneIcon = "images/greenIsOn.png";
+                            break;
+                        case "yellow1":
+                            pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                            break;
+                        case "red1":
+                            pathToTrafficLightOneIcon = "images/redIsOn.png";
+                            break;
+                        case "green2":
+                            pathToTrafficLightTwoIcon = "images/greenIsOn.png";
+                            break;
+                        case "yellow2":
+                            pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                            break;
+                        case "red2":
+                            pathToTrafficLightTwoIcon = "images/redIsOn.png";
+                            break;
+                        default:
+                            pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                            pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                            break;
+                    }
+                    trafficLights.setTrafficLightOne(pathToTrafficLightOneIcon);
+                    trafficLights.setTrafficLightTwo(pathToTrafficLightTwoIcon);
+                } catch (SocketException e) {
+                    try {
+                        cpnTools.disconnect();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    connectedToCPN = false;
+                    syncCounter = 0;
+                    trafficLights.setStatusMessageLabel("connection lost!");
+                    trafficLights.setTrafficLightsToDefault();
                 }
-                connectedToCPN = false;
-                //System.out.println("Connection lost.");
-                trafficLights.setStatusMessageLabel("connection lost!");
-                trafficLights.setTrafficLightsToDefault();
             }
         }
     }
