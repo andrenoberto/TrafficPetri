@@ -84,7 +84,7 @@ public class TrafficLights {
         trafficLightTwo.setIcon(imageIcon);
     }
 
-    public void setTrafficLightsToDefault() {
+    private void setTrafficLightsToDefault() {
         String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
         String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
         this.setTrafficLightOne(pathToTrafficLightOneIcon);
