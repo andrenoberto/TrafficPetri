@@ -392,7 +392,7 @@
                   type="Solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Abrir</text>
+        <text>Open</text>
         <ellipse w="106.000000"
                  h="40.000000"/>
         <token x="-10.000000"
@@ -497,13 +497,13 @@
                   type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Ligar</text>
-        <box w="60.000000"
+        <text>Turn On</text>
+        <box w="96.000000"
              h="40.000000"/>
         <binding x="7.200000"
                  y="-3.000000"/>
         <cond id="ID1412324194">
-          <posattr x="-52.000000"
+          <posattr x="-70.000000"
                    y="256.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -517,7 +517,7 @@
                 version="4.0.1"/>
         </cond>
         <time id="ID1412324195">
-          <posattr x="31.500000"
+          <posattr x="49.500000"
                    y="256.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -531,7 +531,7 @@
                 version="4.0.1"/>
         </time>
         <code id="ID1412324196">
-          <posattr x="51.500000"
+          <posattr x="69.500000"
                    y="173.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -545,7 +545,7 @@
                 version="4.0.1"/>
         </code>
         <priority id="ID1412324198">
-          <posattr x="-81.000000"
+          <posattr x="-99.000000"
                    y="194.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -571,8 +571,7 @@
                   type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Sensor
-SMF1</text>
+        <text>Traffic Light 2</text>
         <box w="106.000000"
              h="40.000000"/>
         <binding x="7.200000"
@@ -646,8 +645,7 @@ SMF1</text>
                   type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Sensor
-SMF2</text>
+        <text>Traffic Light 1</text>
         <box w="106.000000"
              h="40.000000"/>
         <binding x="7.200000"
@@ -721,7 +719,7 @@ SMF2</text>
                   type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Inverter Sentido</text>
+        <text>Turn On</text>
         <box w="146.000000"
              h="40.000000"/>
         <binding x="7.200000"
@@ -798,7 +796,7 @@ send(&quot;Con1&quot;, sem1, stringEncode)</text>
                   type="solid"/>
         <textattr colour="Black"
                   bold="false"/>
-        <text>Conectar</text>
+        <text>Connect</text>
         <box w="112.000000"
              h="40.000000"/>
         <binding x="7.200000"
@@ -955,7 +953,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1412323980"/>
         <annot id="ID1412332534">
-          <posattr x="291.000000"
+          <posattr x="300.000000"
                    y="250.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -987,7 +985,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1412323794"/>
         <annot id="ID1412332535">
-          <posattr x="-293.500000"
+          <posattr x="-303.500000"
                    y="250.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
@@ -1019,8 +1017,8 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
         <transend idref="ID1412324193"/>
         <placeend idref="ID1412323853"/>
         <annot id="ID1412332536">
-          <posattr x="-326.000000"
-                   y="140.000000"/>
+          <posattr x="-335.000000"
+                   y="137.000000"/>
           <fillattr colour="White"
                     pattern="Solid"
                     filled="false"/>
@@ -1306,7 +1304,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
                    currentcyckle="2"/>
         <transend idref="ID1413481574"/>
         <placeend idref="ID1413481464"/>
-        <annot id="ID1413490881">
+        <annot id="ID1413490925">
           <posattr x="-119.000000"
                    y="336.000000"/>
           <fillattr colour="White"
@@ -1643,7 +1641,7 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <text>&lt;same as model&gt;</text>
         </value>
       </option>
-      <option name="extensions.10002.enable">
+      <option name="extensions.10003.enable">
         <value>
           <boolean>true</boolean>
         </value>
@@ -1653,17 +1651,17 @@ openConnection(&quot;Con1&quot;, &quot;localhost&quot;, 9000);</text>
           <boolean>true</boolean>
         </value>
       </option>
-      <option name="extensions.10006.enable">
-        <value>
-          <boolean>true</boolean>
-        </value>
-      </option>
       <option name="extensions.10001.enable">
         <value>
           <boolean>true</boolean>
         </value>
       </option>
-      <option name="extensions.10003.enable">
+      <option name="extensions.10002.enable">
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </option>
+      <option name="extensions.10006.enable">
         <value>
           <boolean>true</boolean>
         </value>
