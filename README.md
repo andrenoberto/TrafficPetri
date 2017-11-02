@@ -17,6 +17,12 @@ You can find the source code inside JavaPetri folder.
 
 ## Instructions
 
-I'll be adding details to compile and run ASAP.
+### First step
+
+Run `JavaPetri.jar`
+
+### Second step
+
+Open `trafficlights.cpn` & start the simulation.
 
 [cpnwebsite]: http://cpntools.org
