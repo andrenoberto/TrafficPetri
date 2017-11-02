@@ -16,6 +16,10 @@ public class CPNTools implements CPNInterface {
      * Internal reference to the socket being used
      */
     private Socket socket;
+    /**
+     *  Server socket
+     */
+    private ServerSocket serverSocket;
 
     /**
      * Constructor to create a new JavaCPN object. Simply initialises the internal
@@ -63,7 +67,7 @@ public class CPNTools implements CPNInterface {
      */
     @Override
     public void accept(int port) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(port);
+        this.serverSocket = new ServerSocket(port);
         this.socket = serverSocket.accept();
         this.input = socket.getInputStream();
         this.output = socket.getOutputStream();
@@ -217,5 +221,6 @@ public class CPNTools implements CPNInterface {
         this.input.close();
         this.output.close();
         this.socket.close();
+        this.serverSocket.close();
     }
 }
