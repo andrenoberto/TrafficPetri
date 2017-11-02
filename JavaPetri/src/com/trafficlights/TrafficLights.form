@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.trafficlights.TrafficLights">
-  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="1080" height="1080"/>
     </constraints>
     <properties>
-      <minimumSize width="1034" height="552"/>
+      <minimumSize width="1034" height="580"/>
       <opaque value="false"/>
-      <preferredSize width="1034" height="552"/>
+      <preferredSize width="1034" height="580"/>
     </properties>
     <border type="none"/>
     <children>
@@ -18,7 +18,9 @@
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <floatable value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="1582" class="javax.swing.JButton" binding="helpButton">
@@ -67,6 +69,32 @@
           </component>
         </children>
       </grid>
+      <toolbar id="13cf4" binding="statusBar">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <floatable value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="8dddf" class="javax.swing.JLabel" binding="statusLabel">
+            <constraints/>
+            <properties>
+              <text value="Status: "/>
+            </properties>
+          </component>
+          <component id="5b8cf" class="javax.swing.JLabel" binding="statusMessageLabel">
+            <constraints/>
+            <properties>
+              <text value="waiting for a new connection..."/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
     </children>
   </grid>
 </form>

@@ -15,6 +15,9 @@ public class TrafficLights {
     private JToolBar menuBar;
     private JLabel trafficLightOne;
     private JLabel trafficLightTwo;
+    private JLabel statusMessageLabel;
+    private JLabel statusLabel;
+    private JToolBar statusBar;
     private boolean tfOneRed = true;
     private boolean tfTwoRed = true;
     private boolean tfOneYellow = false;
@@ -91,6 +94,10 @@ public class TrafficLights {
         this.setTrafficLightTwo(pathToTrafficLightTwoIcon);
     }
 
+    public void setStatusMessageLabel(String statusMessageLabel) {
+        this.statusMessageLabel.setText(statusMessageLabel);
+    }
+
     public static void main(String[] args) {
         TrafficLights trafficLights = new TrafficLights();
         JFrame jFrame = new JFrame("Colored Petri Net - Traffic Lights");
@@ -114,15 +121,22 @@ public class TrafficLights {
         try {
             cpnTools.accept(port);
             connectedToCPN = true;
-            System.out.println("Connection found...\nCommunication established.");
+            trafficLights.setStatusMessageLabel("communication established.");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         String result;
+        int syncCounter = 0;
         while (connectedToCPN) {
             try {
                 result = Decode.decodeString(cpnTools.receive());
+                if (syncCounter < 3) {
+                    syncCounter++;
+                    trafficLights.setStatusMessageLabel("syncing traffic lights, please wait.");
+                } else {
+                    trafficLights.setStatusMessageLabel("receiving data.");
+                }
                 switch (result) {
                     case "green1":
                         pathToTrafficLightOneIcon = "images/greenIsOn.png";
@@ -157,6 +171,7 @@ public class TrafficLights {
                 }
                 connectedToCPN = false;
                 //System.out.println("Connection lost.");
+                trafficLights.setStatusMessageLabel("connection lost!");
                 trafficLights.setTrafficLightsToDefault();
             }
         }
