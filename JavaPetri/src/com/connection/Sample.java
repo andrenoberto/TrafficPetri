@@ -7,8 +7,13 @@ import java.io.IOException;
 import java.net.SocketException;
 
 public class Sample {
+    private boolean debug = false;
     private CPNTools cpnTools = new CPNTools();
     private boolean connectedToCPN = false;
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
 
     private void init() throws Exception {
         System.out.println("Waiting for a new connection...");
@@ -16,9 +21,11 @@ public class Sample {
             int port = 9000;
             this.cpnTools.accept(port);
             this.connectedToCPN = true;
-            System.out.println("Connection found...\nEstablishing communication...");
+            System.out.println("Connection found...\nCommunication established.");
         } catch (IOException e) {
-            e.printStackTrace();
+            if (this.debug) {
+                e.printStackTrace();
+            }
         }
 
         while (this.connectedToCPN) {
@@ -27,7 +34,12 @@ public class Sample {
                 result = Decode.decodeString(this.cpnTools.receive());
                 System.out.println("Message: " + result);
             } catch (SocketException e) {
-                e.printStackTrace();
+                this.cpnTools.disconnect();
+                this.connectedToCPN = false;
+                System.out.println("Connection lost.");
+                if (this.debug) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -41,6 +53,7 @@ public class Sample {
         how this application works.
          */
         Sample sample = new Sample();
+        sample.setDebug(false);
         sample.init();
     }
 }
