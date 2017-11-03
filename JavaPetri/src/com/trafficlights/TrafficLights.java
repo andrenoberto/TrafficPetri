@@ -250,7 +250,6 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         String statusMessage;
         if (connectionLost.length > 0) {
             lostConnection = connectionLost[0];
-            System.out.println(connectionLost[0]);
             if (lostConnection) {
                 statusMessage = "connection lost. Waiting for a new connection.";
             } else {
