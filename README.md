@@ -36,9 +36,9 @@ Now you should see the application and CPNTools interacting.
 - Open a New Connection (closes and watches for a new connection)
 - Exit (closes the application)
 ##### Help (opens a dropdown menu with a few options)
-- About (get details about the release you're running)
+- About (gets details about the release you're running)
 - Contribute (opens a web page to pull request's section of this repo)
 - Report a Bug (opens a web page to issues' section of this repo)
-- Help (get details about how to get futher information of this application)
+- Help (gets details about how to get futher information of this application)
 
 [cpnwebsite]: http://cpntools.org
