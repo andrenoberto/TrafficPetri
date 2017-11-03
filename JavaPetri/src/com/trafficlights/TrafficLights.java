@@ -118,7 +118,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         /*
             File
          */
-        this._fOpenClose = new JMenuItem("Open/Close a Connection");
+        this._fOpenClose = new JMenuItem("Open a New Connection");
         this._fOpenClose.setMnemonic(KeyEvent.VK_O);
         this._fOpenClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
         this._fOpenClose.addActionListener(this);
