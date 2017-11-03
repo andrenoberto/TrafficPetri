@@ -13,6 +13,7 @@ import java.net.SocketException;
 import java.net.URI;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
+    private String version = "v1.0.1";
     private JPanel MainPanel;
     private JLabel trafficLightOne;
     private JLabel trafficLightTwo;
@@ -77,7 +78,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         this._hContribute.addActionListener(this);
         this.help.add(this._hContribute);
 
-        this._hReportABug = new JMenuItem("Report A Bug");
+        this._hReportABug = new JMenuItem("Report a Bug");
         this._hReportABug.setMnemonic(KeyEvent.VK_R);
         this._hReportABug.addActionListener(this);
         this.help.add(this._hReportABug);
@@ -246,7 +247,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void aboutMessageDialog() {
-        String message = "TrafficPetri v1.0.0, built on October 02, 2017.";
+        String message = "TrafficPetri " + this.version + ", built on October 02, 2017.";
         JOptionPane.showMessageDialog(null, message, "About", JOptionPane.INFORMATION_MESSAGE);
     }
 
