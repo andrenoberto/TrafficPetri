@@ -33,6 +33,7 @@ Now you should see the application and CPNTools interacting.
 
 ### Menu bar
 ##### File (opens a dropdown menu with a few options)
+- Open a New Connection (closes and watches for a new connection)
 - Exit (closes the application)
 ##### Help (opens a dropdown menu with a few options)
 - About (get details about the release you're running)
