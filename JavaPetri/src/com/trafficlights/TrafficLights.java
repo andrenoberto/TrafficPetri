@@ -13,14 +13,20 @@ import java.net.SocketException;
 import java.net.URI;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
-    private String version = "v1.0.2";
-    private String buildDate = "October 03, 2017";
+    private String version;
+    private String buildDate;
+    private String dataReceivedResult;
+    private String pathToTrafficLightOneIcon;
+    private String pathToTrafficLightTwoIcon;
+    private CPNTools cpnTools = null;
     private JPanel MainPanel;
     private JLabel trafficLightOne;
     private JLabel trafficLightTwo;
     private JLabel statusMessageLabel;
     private JLabel statusLabel;
     private JToolBar statusBar;
+    private int syncCounter = 0;
+    private boolean connectedToCPN = false;
     private boolean tfOneRed = true;
     private boolean tfTwoRed = true;
     private boolean tfOneYellow = false;
@@ -37,7 +43,48 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenuItem _hReportABug;
     private JMenuItem _hHelp;
 
+    private void setStatusBarToolTipText() {
+        this.statusBar.setToolTipText("Displays the current status of the connection.");
+    }
+
+    private void setStatusLabel() {
+        this.statusLabel.setText("Status: ");
+    }
+
+    private void setMenuBar(JMenuBar menuBar) {
+        this.menuBar = menuBar;
+    }
+
+    private String getVersion() {
+        return version;
+    }
+
+    private void setVersion() {
+        this.version = "v1.2.0";
+    }
+
+    private String getBuildDate() {
+        return buildDate;
+    }
+
+    private void setBuildDate() {
+        this.buildDate = "October 03, 2017";
+    }
+
+    private String getDataReceivedResult() {
+        return dataReceivedResult;
+    }
+
+    private void setDataReceivedResult(String dataReceivedResult) {
+        this.dataReceivedResult = dataReceivedResult;
+    }
+
     private TrafficLights(boolean ... addMouseListener) {
+        this.setVersion();
+        this.setBuildDate();
+        this.setStatusLabel();
+        this.setStatusBarToolTipText();
+        this.cpnTools = new CPNTools();
         setTitle("TrafficPetri: Colored Petri Net - Traffic Lights");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Color bgColor = new Color(122, 178, 211);
@@ -46,7 +93,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
             Toolbar section
          */
         this.addKeyListener(this);
-        this.menuBar = new JMenuBar();
+        this.setMenuBar(new JMenuBar());
         /*
             Dropdown menus
          */
@@ -64,6 +111,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
          */
         this._fExit = new JMenuItem("Exit");
         this._fExit.setMnemonic(KeyEvent.VK_X);
+        this._fExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_MASK));
         this._fExit.addActionListener(this);
         this.file.add(this._fExit);
         /*
@@ -71,21 +119,27 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
          */
         this._hAbout = new JMenuItem("About");
         this._hAbout.setMnemonic(KeyEvent.VK_A);
+        this._hAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
         this._hAbout.addActionListener(this);
         this.help.add(this._hAbout);
 
         this._hContribute = new JMenuItem("Contribute");
         this._hContribute.setMnemonic(KeyEvent.VK_C);
+        this._hContribute.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         this._hContribute.addActionListener(this);
         this.help.add(this._hContribute);
 
         this._hReportABug = new JMenuItem("Report a Bug");
         this._hReportABug.setMnemonic(KeyEvent.VK_R);
+        this._hReportABug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
         this._hReportABug.addActionListener(this);
         this.help.add(this._hReportABug);
 
+        this.help.addSeparator();
+
         this._hHelp = new JMenuItem("Help");
         this._hHelp.setMnemonic(KeyEvent.VK_F1);
+        this._hHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
         this._hHelp.addActionListener(this);
         this.help.add(this._hHelp);
 
@@ -147,14 +201,120 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         });
     }
 
+    private CPNTools getCPNToolsObject() {
+        return this.cpnTools;
+    }
+
+    private void increaseSyncCounter() {
+        this.syncCounter++;
+    }
+
+    private int getSyncCounter() {
+        return this.syncCounter;
+    }
+
+    private void resetSyncCounter() {
+        this.syncCounter = 0;
+    }
+
+    private boolean getConnectedToCPN() {
+        return this.connectedToCPN;
+    }
+
+    private void setConnectedToCPN(boolean connectedToCPN) {
+        this.connectedToCPN = connectedToCPN;
+    }
+
+    private void closeCPNToolsConnection(boolean... connectionLost) {
+        boolean lostConnection;
+        String statusMessage;
+        if (connectionLost.length > 0) {
+            lostConnection = connectionLost[0];
+            if (lostConnection) {
+                statusMessage = "connection lost. Waiting for a new connection.";
+            } else {
+                statusMessage = "connection successfully closed. Waiting for a new connection.";
+            }
+        } else {
+            return;
+        }
+        try {
+            this.cpnTools.disconnect();
+            this.setConnectedToCPN(false);
+            this.resetSyncCounter();
+            this.setStatusMessageLabel(statusMessage);
+            this.setTrafficLightsToDefault();
+        } catch (IOException e1) {
+            this.setStatusMessageLabel("could not close the socket. Please restart this application.");
+        }
+    }
+
+    private void setTrafficLights(String pathToTrafficLightOneIcon, String pathToTrafficLightTwoIcon) {
+        this.setTrafficLightOne(pathToTrafficLightOneIcon);
+        this.setTrafficLightTwo(pathToTrafficLightTwoIcon);
+    }
+
+    private void communicateWithCPNTools() {
+        if (this.cpnTools == null) {
+            return;
+        }
+        try {
+            this.setDataReceivedResult(Decode.decodeString(this.cpnTools.receive()));
+            if (this.getSyncCounter() < 3) {
+                this.increaseSyncCounter();
+                this.setStatusMessageLabel("syncing traffic lights, please wait.");
+            } else if (this.getSyncCounter() == 3) {
+                this.increaseSyncCounter();
+                this.setStatusMessageLabel("traffic lights synced.");
+            } else {
+                this.setStatusMessageLabel("receiving data.");
+            }
+            switch (this.getDataReceivedResult()) {
+                case "green1":
+                    this.pathToTrafficLightOneIcon = "images/greenIsOn.png";
+                    break;
+                case "yellow1":
+                    this.pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                    break;
+                case "red1":
+                    this.pathToTrafficLightOneIcon = "images/redIsOn.png";
+                    break;
+                case "green2":
+                    this.pathToTrafficLightTwoIcon = "images/greenIsOn.png";
+                    break;
+                case "yellow2":
+                    this.pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                    break;
+                case "red2":
+                    this.pathToTrafficLightTwoIcon = "images/redIsOn.png";
+                    break;
+                default:
+                    this.pathToTrafficLightOneIcon = "images/yellowIsOn.png";
+                    this.pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
+                    break;
+            }
+            System.out.println(this.pathToTrafficLightOneIcon);
+            System.out.println(this.pathToTrafficLightTwoIcon);
+            this.setTrafficLights(this.pathToTrafficLightOneIcon, this.pathToTrafficLightTwoIcon);
+            //ImageIcon imageIcon = new ImageIcon(getClass().getResource(this.pathToTrafficLightOneIcon));
+            //trafficLightOne.setIcon(imageIcon);
+            //this.setTrafficLightOne(this.pathToTrafficLightOneIcon);
+            //this.setTrafficLightTwo(this.pathToTrafficLightTwoIcon);
+        } catch (SocketException e) {
+            this.closeCPNToolsConnection(true);
+        }
+    }
+
     private void setTrafficLightOne(String pathToIcon) {
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
-        trafficLightOne.setIcon(imageIcon);
+        System.out.println(pathToIcon);
+        //ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
+        //trafficLightOne.setIcon(imageIcon);
     }
 
     private void setTrafficLightTwo(String pathToIcon) {
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
-        trafficLightTwo.setIcon(imageIcon);
+        System.out.println(pathToIcon);
+        //ImageIcon imageIcon = new ImageIcon(getClass().getResource(pathToIcon));
+        //trafficLightTwo.setIcon(imageIcon);
     }
 
     private void setTrafficLightsToDefault() {
@@ -176,79 +336,27 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         /*
         CPNTools communication stuff
          */
-        String pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-        String pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
         trafficLights.setTrafficLightsToDefault();
 
-        String result;
         int port = 9000;
-        int syncCounter = 0;
-        boolean connectedToCPN = false;
         while (true) {
-            CPNTools cpnTools = new CPNTools();
+            //CPNTools cpnTools = trafficLights.getCPNToolsObject().accept();
             try {
-                cpnTools.accept(port);
-                connectedToCPN = true;
+                trafficLights.getCPNToolsObject().accept(port);
+                trafficLights.setConnectedToCPN(true);
                 trafficLights.setStatusMessageLabel("connected to CPNTools.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            while (connectedToCPN) {
-                try {
-                    result = Decode.decodeString(cpnTools.receive());
-                    if (syncCounter < 3) {
-                        syncCounter++;
-                        trafficLights.setStatusMessageLabel("syncing traffic lights, please wait.");
-                    } else if (syncCounter == 3) {
-                        syncCounter++;
-                        trafficLights.setStatusMessageLabel("traffic lights synced.");
-                    } else {
-                        trafficLights.setStatusMessageLabel("receiving data.");
-                    }
-                    switch (result) {
-                        case "green1":
-                            pathToTrafficLightOneIcon = "images/greenIsOn.png";
-                            break;
-                        case "yellow1":
-                            pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-                            break;
-                        case "red1":
-                            pathToTrafficLightOneIcon = "images/redIsOn.png";
-                            break;
-                        case "green2":
-                            pathToTrafficLightTwoIcon = "images/greenIsOn.png";
-                            break;
-                        case "yellow2":
-                            pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
-                            break;
-                        case "red2":
-                            pathToTrafficLightTwoIcon = "images/redIsOn.png";
-                            break;
-                        default:
-                            pathToTrafficLightOneIcon = "images/yellowIsOn.png";
-                            pathToTrafficLightTwoIcon = "images/yellowIsOn.png";
-                            break;
-                    }
-                    trafficLights.setTrafficLightOne(pathToTrafficLightOneIcon);
-                    trafficLights.setTrafficLightTwo(pathToTrafficLightTwoIcon);
-                } catch (SocketException e) {
-                    try {
-                        cpnTools.disconnect();
-                        connectedToCPN = false;
-                        syncCounter = 0;
-                        trafficLights.setStatusMessageLabel("connection lost!");
-                        trafficLights.setTrafficLightsToDefault();
-                    } catch (IOException e1) {
-                        trafficLights.setStatusMessageLabel("connection lost! Could not close the socket. Please restart this application.");
-                    }
-                }
+            while (trafficLights.getConnectedToCPN()) {
+                trafficLights.communicateWithCPNTools();
             }
         }
     }
 
     private void aboutMessageDialog() {
-        String message = "TrafficPetri " + this.version + ", built on " + this.buildDate + ".";
+        String message = "TrafficPetri " + this.getVersion() + ", built on " + this.getBuildDate() + ".";
         JOptionPane.showMessageDialog(null, message, "About", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -296,7 +404,6 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -318,6 +425,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
                 }
                 break;
             case 'f':
+                this.help.setPopupMenuVisible(false);
                 this.file.doClick();
                 break;
             case 'h':
