@@ -13,7 +13,8 @@ import java.net.SocketException;
 import java.net.URI;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
-    private String version = "v1.0.1";
+    private String version = "v1.0.2";
+    private String buildDate = "October 03, 2017";
     private JPanel MainPanel;
     private JLabel trafficLightOne;
     private JLabel trafficLightTwo;
@@ -234,20 +235,20 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
                 } catch (SocketException e) {
                     try {
                         cpnTools.disconnect();
+                        connectedToCPN = false;
+                        syncCounter = 0;
+                        trafficLights.setStatusMessageLabel("connection lost!");
+                        trafficLights.setTrafficLightsToDefault();
                     } catch (IOException e1) {
-                        e1.printStackTrace();
+                        trafficLights.setStatusMessageLabel("connection lost! Could not close the socket. Please restart this application.");
                     }
-                    connectedToCPN = false;
-                    syncCounter = 0;
-                    trafficLights.setStatusMessageLabel("connection lost!");
-                    trafficLights.setTrafficLightsToDefault();
                 }
             }
         }
     }
 
     private void aboutMessageDialog() {
-        String message = "TrafficPetri " + this.version + ", built on October 02, 2017.";
+        String message = "TrafficPetri " + this.version + ", built on " + this.buildDate + ".";
         JOptionPane.showMessageDialog(null, message, "About", JOptionPane.INFORMATION_MESSAGE);
     }
 
