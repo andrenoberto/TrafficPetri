@@ -26,6 +26,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JLabel statusLabel;
     private JToolBar statusBar;
     private int syncCounter = 0;
+    private boolean applicationRunning = true;
     private boolean connectedToCPN = false;
     private boolean tfOneRed = true;
     private boolean tfTwoRed = true;
@@ -43,6 +44,10 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenuItem _hContribute;
     private JMenuItem _hReportABug;
     private JMenuItem _hHelp;
+
+    public boolean isApplicationRunning() {
+        return this.applicationRunning;
+    }
 
     public JPanel getMainPanel() {
         return MainPanel;
@@ -377,6 +382,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
             this.closeCPNToolsConnection(false);
         }
         if (e.getSource().equals(this._fExit)) {
+            this.applicationRunning = false;
             System.exit(0);
         }
         /*
@@ -435,6 +441,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
                 break;
             case 'x':
                 if (this.file.isSelected()) {
+                    this.applicationRunning = false;
                     System.exit(0);
                 }
                 break;
@@ -448,9 +455,6 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
 
     @Override
     public void menuSelected(MenuEvent e) {
-        if (e.getSource().equals(this._fExit)) {
-            System.exit(0);
-        }
     }
 
     @Override
