@@ -32,13 +32,15 @@ Now you should see the application and CPNTools interacting.
 # Features
 
 ### Menu bar
-##### File (opens a dropdown menu with a few options)
-- Open a New Connection (closes and watches for a new connection)
-- Exit (closes the application)
-##### Help (opens a dropdown menu with a few options)
-- About (gets details about the release you're running)
-- Contribute (opens a web page to pull request's section of this repo)
-- Report a Bug (opens a web page to issues' section of this repo)
-- Help (gets details about how to get futher information of this application)
+##### File opens a dropdown menu with a few options.
+General keyboard shortcut `F`.
+- `Open a New Connection` option closes and watches for a new connection. Keyboard shortcut `F5`.
+- `Exit` option closes the application. Keyboard shortcut `CTRL + W`.
+##### Help` option opens a dropdown menu with a few options.
+General keyboard shortcut `H`.
+- `About` option gets details about the release you're running. Keyboard shortcut `CTRL + A`.
+- `Contribute` option opens a web page to pull request's section of this repo. Keyboard shortcut `CTRL + C`.
+- `Report a Bug` option opens a web page to issues' section of this repo. Keyboard shortcut `CTRL + R`.
+- `Help` option gets details about how to get futher information of this application. Keyboard Keyboard shortcut `F1`.
 
 [cpnwebsite]: http://cpntools.org
