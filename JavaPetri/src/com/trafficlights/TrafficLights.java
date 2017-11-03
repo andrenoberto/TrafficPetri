@@ -74,7 +74,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void setVersion() {
-        this.version = "v1.2.0";
+        this.version = "v1.2.1";
     }
 
     private String getBuildDate() {
