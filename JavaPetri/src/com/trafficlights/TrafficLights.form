@@ -63,7 +63,7 @@
           <component id="5b8cf" class="javax.swing.JLabel" binding="statusMessageLabel">
             <constraints/>
             <properties>
-              <text value="waiting for a new connection..."/>
+              <text value="waiting for a new connection."/>
             </properties>
           </component>
         </children>
