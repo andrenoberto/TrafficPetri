@@ -32,7 +32,7 @@ Now you should see the application and CPNTools interacting.
 # Features
 
 ### Menu bar
-##### File opens a dropdown menu with a few options.
+##### File option opens a dropdown menu with a few options.
 General keyboard shortcut `F`.
 - `Open a New Connection` option closes and watches for a new connection. Keyboard shortcut `F5`.
 - `Exit` option closes the application. Keyboard shortcut `CTRL + W`.
@@ -42,5 +42,11 @@ General keyboard shortcut `H`.
 - `Contribute` option opens a web page to pull request's section of this repo. Keyboard shortcut `CTRL + C`.
 - `Report a Bug` option opens a web page to issues' section of this repo. Keyboard shortcut `CTRL + R`.
 - `Help` option gets details about how to get futher information of this application. Keyboard Keyboard shortcut `F1`.
+
+### Main Panel
+Uses GUI to show the simulated petri net in a simplified way.
+
+### Status bar
+Shows the current status of the application.
 
 [cpnwebsite]: http://cpntools.org
