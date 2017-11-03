@@ -32,12 +32,12 @@ Now you should see the application and CPNTools interacting.
 # Features
 
 ### Menu bar
-- File (opens a dropdown menu with a few options)
--- Exit (closes the application)
-- Help (opens a dropdown menu with a few options)
--- About (get details about the release you're running)
--- Contribute (opens a web page to pull request's section of this repo)
--- Report a Bug (opens a web page to issues' section of this repo)
--- Help (get details about how to get futher information of this application)
+##### File (opens a dropdown menu with a few options)
+- Exit (closes the application)
+##### Help (opens a dropdown menu with a few options)
+- About (get details about the release you're running)
+- Contribute (opens a web page to pull request's section of this repo)
+- Report a Bug (opens a web page to issues' section of this repo)
+- Help (get details about how to get futher information of this application)
 
 [cpnwebsite]: http://cpntools.org
