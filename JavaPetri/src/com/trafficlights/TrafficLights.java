@@ -2,6 +2,7 @@ package com.trafficlights;
 
 import com.cpn.CPNTools;
 import com.messagehelper.Decode;
+import com.messagehelper.MessageWithLink;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
@@ -25,6 +26,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JLabel statusMessageLabel;
     private JLabel statusLabel;
     private JToolBar statusBar;
+    private JPanel tfPanel;
     private int syncCounter = 0;
     private boolean applicationRunning = true;
     private boolean connectedToCPN = false;
@@ -44,6 +46,10 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenuItem _hContribute;
     private JMenuItem _hReportABug;
     private JMenuItem _hHelp;
+
+    public void setConnectedStatusBackground() {
+        setBackground(new Color(52, 73, 94));
+    }
 
     public boolean isApplicationRunning() {
         return this.applicationRunning;
@@ -74,7 +80,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void setVersion() {
-        this.version = "v1.2.1";
+        this.version = "v1.3.0";
     }
 
     private String getBuildDate() {
@@ -82,7 +88,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void setBuildDate() {
-        this.buildDate = "October 03, 2017";
+        this.buildDate = "October 04, 2017";
     }
 
     private String getDataReceivedResult() {
@@ -101,8 +107,8 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         this.cpnTools = new CPNTools();
         setTitle("TrafficPetri: Colored Petri Net - Traffic Lights");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Color bgColor = new Color(122, 178, 211);
-        setBackground(bgColor);
+        this.tfPanel.setBackground(new Color(122, 178, 211));
+        setBackground(new Color(231, 76, 60));
         /*
             Toolbar section
          */
@@ -276,6 +282,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         } catch (IOException e1) {
             this.setStatusMessageLabel("could not close the socket. Please restart this application.");
         }
+        setBackground(new Color(231, 76, 60));
     }
 
     private void setTrafficLights(String pathToTrafficLightOneIcon, String pathToTrafficLightTwoIcon) {
@@ -289,11 +296,15 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         }
         try {
             this.setDataReceivedResult(Decode.decodeString(this.cpnTools.receive()));
-            if (this.getSyncCounter() < 3) {
+            if (this.getSyncCounter() == 0) {
                 this.increaseSyncCounter();
+                setBackground(new Color(241, 196, 15));
                 this.setStatusMessageLabel("syncing traffic lights, please wait.");
+            } else if (this.getSyncCounter() < 3) {
+                this.increaseSyncCounter();
             } else if (this.getSyncCounter() == 3) {
                 this.increaseSyncCounter();
+                setBackground(new Color(26, 188, 156));
                 this.setStatusMessageLabel("traffic lights synced.");
             } else {
                 this.setStatusMessageLabel("receiving data.");
