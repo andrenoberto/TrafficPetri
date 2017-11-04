@@ -5,10 +5,11 @@ import com.trafficlights.TrafficLights;
 import java.io.IOException;
 
 public class Main {
+    static TrafficLights trafficLights = new TrafficLights(false);
+
     public static class TrafficLightsRunnable implements Runnable {
         @Override
         public void run() {
-            TrafficLights trafficLights = new TrafficLights(false);
             trafficLights.setContentPane(trafficLights.getMainPanel());
             trafficLights.pack();
             trafficLights.setVisible(true);
@@ -38,5 +39,6 @@ public class Main {
     public static void main(String[] args) {
         Thread thread = new Thread(new TrafficLightsRunnable());
         thread.start();
+        trafficLights.checkForUpdates(true);
     }
 }
