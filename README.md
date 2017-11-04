@@ -41,7 +41,7 @@ General keyboard shortcut `H`.
 - `About` option gets details about the release you're running. Keyboard shortcut `CTRL + A`.
 - `Contribute` option opens a web page to pull request's section of this repo. Keyboard shortcut `CTRL + C`.
 - `Report a Bug` option opens a web page to issues' section of this repo. Keyboard shortcut `CTRL + R`.
-- `Check For Updates...` option redirects you to this repo's releases section so you can check if you're on the latest version. Keyboard shortcut `CTRL + C`.
+- `Check For Updates...` option checks for latest releases and if available download it. Keyboard shortcut `CTRL + U`.
 - `Help` option gets details about how to get futher information of this application. Keyboard Keyboard shortcut `F1`.
 
 ### Main Panel
