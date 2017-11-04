@@ -22,6 +22,7 @@ public class Main {
                     trafficLights.getCPNToolsObject().accept(9000);
                     trafficLights.setConnectedToCPN(true);
                     trafficLights.get_fOpenClose().setEnabled(true);
+                    trafficLights.setConnectedStatusBackground();
                     trafficLights.setStatusMessageLabel("connected to CPNTools.");
                 } catch (IOException e) {
                     trafficLights.setStatusMessageLabel("could not connect/disconnect CPNTools to this application.");
