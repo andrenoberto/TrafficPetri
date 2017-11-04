@@ -9,11 +9,11 @@ You can download CPN Tools on it's [website][cpnwebsite].
 
 To simulate, simply run the .cpn file and start the simulation.
 
-## Java Project
+## JavaPetri
 
-There's also an in progress Java project that will make a communication with CPN Tools' server and will be able to show the simulation within a better GUI.
+This application will make a communication with CPN Tools' server and will be able to show the simulation within a better GUI.
 
-You can find the source code inside JavaPetri folder.
+You can find the source code inside JavaPetri folder or if just want to run it download always the [latest release here][javapetri].
 
 ## Instructions
 
@@ -41,6 +41,7 @@ General keyboard shortcut `H`.
 - `About` option gets details about the release you're running. Keyboard shortcut `CTRL + A`.
 - `Contribute` option opens a web page to pull request's section of this repo. Keyboard shortcut `CTRL + C`.
 - `Report a Bug` option opens a web page to issues' section of this repo. Keyboard shortcut `CTRL + R`.
+- `Check For Updates...` option redirects you to this repo's releases section so you can check if you're on the latest version. Keyboard shortcut `CTRL + C`.
 - `Help` option gets details about how to get futher information of this application. Keyboard Keyboard shortcut `F1`.
 
 ### Main Panel
@@ -50,3 +51,4 @@ Uses GUI to show the simulated petri net in a simplified way.
 Shows the current status of the application.
 
 [cpnwebsite]: http://cpntools.org
+[javapetri]: https://github.com/andrenoberto/TrafficPetri/releases/latest

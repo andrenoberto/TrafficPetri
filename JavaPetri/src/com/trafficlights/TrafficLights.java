@@ -45,6 +45,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     private JMenuItem _hAbout;
     private JMenuItem _hContribute;
     private JMenuItem _hReportABug;
+    private JMenuItem _hCheckForUpdates;
     private JMenuItem _hHelp;
 
     public void setConnectedStatusBackground() {
@@ -80,7 +81,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void setVersion() {
-        this.version = "v1.3.0";
+        this.version = "v1.3.1";
     }
 
     private String getBuildDate() {
@@ -162,6 +163,14 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         this._hReportABug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
         this._hReportABug.addActionListener(this);
         this.help.add(this._hReportABug);
+
+        this.help.addSeparator();
+
+        this._hCheckForUpdates = new JMenuItem("Check For Updates...");
+        this._hCheckForUpdates.setMnemonic(KeyEvent.VK_U);
+        this._hCheckForUpdates.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK));
+        this._hCheckForUpdates.addActionListener(this);
+        this.help.add(this._hCheckForUpdates);
 
         this.help.addSeparator();
 
@@ -408,6 +417,9 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         if (e.getSource().equals(this._hReportABug)) {
             this.openURI("https://github.com/andrenoberto/TrafficPetri/issues");
         }
+        if (e.getSource().equals(this._hCheckForUpdates)) {
+            this.openURI("https://github.com/andrenoberto/TrafficPetri/releases/latest");
+        }
         if (e.getSource().equals(this._hHelp)) {
             this.helpMessageDialog();
         }
@@ -448,6 +460,11 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
             case 'r':
                 if (this.help.isSelected()) {
                     this.openURI("https://github.com/andrenoberto/TrafficPetri/issues");
+                }
+                break;
+            case 'u':
+                if (this.help.isSelected()) {
+                    this.openURI("https://github.com/andrenoberto/TrafficPetri/releases/latest");
                 }
                 break;
             case 'x':
