@@ -66,6 +66,7 @@
           <component id="5b8cf" class="javax.swing.JLabel" binding="statusMessageLabel">
             <constraints/>
             <properties>
+              <maximumSize width="700" height="21"/>
               <text value="waiting for a new connection."/>
             </properties>
           </component>

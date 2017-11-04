@@ -2,7 +2,6 @@ package com.trafficlights;
 
 import com.cpn.CPNTools;
 import com.messagehelper.Decode;
-import com.messagehelper.MessageWithLink;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,13 +11,9 @@ import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.SocketException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.util.ArrayList;
 
 public class TrafficLights extends JFrame implements KeyListener, ActionListener, MenuListener {
     private String version;
@@ -88,7 +83,7 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
     }
 
     private void setVersion() {
-        this.version = "v1.3.1";
+        this.version = "v1.4.0";
     }
 
     private String getBuildDate() {
@@ -395,7 +390,6 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
         //in the window decorations for dialogs.
         JLabel label = new JLabel(html);
         label.setHorizontalAlignment(JLabel.CENTER);
-        Font font = label.getFont();
         label.setFont(label.getFont().deriveFont(Font.PLAIN,
                 14.0f));
 
@@ -478,53 +472,16 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
 
     public void checkForUpdates(boolean runInBackground) {
         JSONObject jsonObject;
-        String directory = "";
-        final JDialog dialog = new JDialog();
+        String directory;
         try {
-            if (!runInBackground) {
-                dialog.setTitle("Checking For Updates");
-                JLabel label = new JLabel("Checking for updates...");
-                label.setHorizontalAlignment(JLabel.CENTER);
-                label.setFont(label.getFont().deriveFont(Font.PLAIN,
-                        14.0f));
-
-                JButton closeButton = new JButton("Close");
-                closeButton.addActionListener(e -> {
-                    dialog.setVisible(false);
-                    dialog.dispose();
-                });
-                JPanel closePanel = new JPanel();
-                closePanel.setLayout(new BoxLayout(closePanel,
-                        BoxLayout.LINE_AXIS));
-                closePanel.add(Box.createHorizontalGlue());
-                closePanel.add(closeButton);
-                closePanel.setBorder(BorderFactory.
-                        createEmptyBorder(0,0,5,5));
-
-                JPanel contentPane = new JPanel(new BorderLayout());
-                contentPane.add(label, BorderLayout.CENTER);
-                contentPane.add(closePanel, BorderLayout.PAGE_END);
-                contentPane.setOpaque(true);
-                dialog.setContentPane(contentPane);
-
-                //Show it.
-                dialog.setSize(new Dimension(300, 150));
-                dialog.setLocationRelativeTo(this.MainPanel);
-                dialog.setVisible(true);
-            }
-
             String repo = "https://api.github.com/repos/andrenoberto/TrafficPetri/releases/latest";
             jsonObject = new JSONObject(readUrl(repo));
 
-            //this.getVersion();
-            if (!runInBackground) {
-                dialog.setVisible(false);
-                dialog.dispose();
-            }
-
-            if (jsonObject.get("tag_name").equals("v1.2.1")) {
-                String message = "Everything is up to date.";
-                JOptionPane.showMessageDialog(null, message, "Checking For Updates", JOptionPane.INFORMATION_MESSAGE);
+            if (jsonObject.get("tag_name").equals(this.getVersion())) {
+                if (!runInBackground) {
+                    String message = "Everything is up to date.";
+                    JOptionPane.showMessageDialog(null, message, "Checking For Updates", JOptionPane.INFORMATION_MESSAGE);
+                }
                 return;
             } else {
                 Object[] options = {"Yes, please",
@@ -557,60 +514,20 @@ public class TrafficLights extends JFrame implements KeyListener, ActionListener
                     return;
                 }
             }
-
-            System.out.println(jsonObject.get("tag_name"));
             JSONArray arrayList = jsonObject.getJSONArray("assets");
-            /*
-                Update's dialog
-             */
-            final JDialog updateDialog = new JDialog();
-            updateDialog.setTitle("Downloading Updates");
-            JLabel updateLabel = new JLabel("Downloading files...");
-            updateLabel.setHorizontalAlignment(JLabel.CENTER);
-            updateLabel.setFont(updateLabel.getFont().deriveFont(Font.PLAIN,
-                    14.0f));
-
-            JButton updateCloseButton = new JButton("Cancel");
-            updateCloseButton.addActionListener(e -> {
-                updateDialog.setVisible(false);
-                updateDialog.dispose();
-            });
-            JPanel updateClosePanel = new JPanel();
-            updateClosePanel.setLayout(new BoxLayout(updateClosePanel,
-                    BoxLayout.LINE_AXIS));
-            updateClosePanel.add(Box.createHorizontalGlue());
-            updateClosePanel.add(updateCloseButton);
-            updateClosePanel.setBorder(BorderFactory.
-                    createEmptyBorder(0,0,5,5));
-
-            JPanel updateContentPane = new JPanel(new BorderLayout());
-            updateContentPane.add(updateLabel, BorderLayout.CENTER);
-            updateContentPane.add(updateClosePanel, BorderLayout.PAGE_END);
-            updateContentPane.setOpaque(true);
-            updateDialog.setContentPane(updateContentPane);
-
-            //Show it.
-            updateDialog.setSize(new Dimension(300, 150));
-            updateDialog.setLocationRelativeTo(this.MainPanel);
-            updateDialog.setVisible(true);
             for (int i = 0; i < arrayList.length(); i++) {
                 /*
                     Download update
                 */
-                updateLabel.setText("Downloading file " + (i + 1) + " of " + arrayList.length() + "...");
                 URL url = new URL(arrayList.getJSONObject(i).getString("browser_download_url"));
                 ReadableByteChannel readableByteChannel = Channels.newChannel(url.openStream());
                 FileOutputStream fileOutputStream = new FileOutputStream(directory + File.separator + arrayList.getJSONObject(i).getString("name"));
                 fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
             }
-            updateDialog.setVisible(false);
-            updateDialog.dispose();
             String message = "You have successfully downloaded the latest version of TrafficPetri.";
-            JOptionPane.showMessageDialog(null, message, "Checking For Updates", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, message, "Download Complete", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             if (!runInBackground) {
-                dialog.setVisible(false);
-                dialog.dispose();
                 this.checkForUpdatesFailedMessageDialog();
             }
         }
